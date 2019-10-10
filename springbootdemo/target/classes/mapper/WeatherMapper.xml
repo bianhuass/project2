@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.szi.springboot.dao.WeatherMapper" >
+  <resultMap id="BaseResultMap" type="com.szi.springboot.entity.Weather" >
+    <id column="weather_id" property="weatherId" jdbcType="INTEGER" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="temperature" property="temperature" jdbcType="INTEGER" />
+    <result column="wind" property="wind" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="kpa" property="kpa" jdbcType="INTEGER" />
+    <result column="aircondition" property="aircondition" jdbcType="VARCHAR" />
+    <result column="weathercondition" property="weathercondition" jdbcType="VARCHAR" />
+    <result column="sickness" property="sickness" jdbcType="VARCHAR" />
+    <result column="uktraviolet" property="uktraviolet" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    weather_id, site, temperature, wind, humidity, kpa, aircondition, weathercondition, 
+    sickness, uktraviolet
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from weather
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from weather
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.szi.springboot.entity.Weather" >
+    insert into weather (weather_id, site, temperature, 
+      wind, humidity, kpa, 
+      aircondition, weathercondition, sickness, 
+      uktraviolet)
+    values (#{weatherId,jdbcType=INTEGER}, #{site,jdbcType=VARCHAR}, #{temperature,jdbcType=INTEGER}, 
+      #{wind,jdbcType=VARCHAR}, #{humidity,jdbcType=VARCHAR}, #{kpa,jdbcType=INTEGER}, 
+      #{aircondition,jdbcType=VARCHAR}, #{weathercondition,jdbcType=VARCHAR}, #{sickness,jdbcType=VARCHAR}, 
+      #{uktraviolet,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.szi.springboot.entity.Weather" >
+    insert into weather
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="weatherId != null" >
+        weather_id,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="wind != null" >
+        wind,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="kpa != null" >
+        kpa,
+      </if>
+      <if test="aircondition != null" >
+        aircondition,
+      </if>
+      <if test="weathercondition != null" >
+        weathercondition,
+      </if>
+      <if test="sickness != null" >
+        sickness,
+      </if>
+      <if test="uktraviolet != null" >
+        uktraviolet,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="weatherId != null" >
+        #{weatherId,jdbcType=INTEGER},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=INTEGER},
+      </if>
+      <if test="wind != null" >
+        #{wind,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="kpa != null" >
+        #{kpa,jdbcType=INTEGER},
+      </if>
+      <if test="aircondition != null" >
+        #{aircondition,jdbcType=VARCHAR},
+      </if>
+      <if test="weathercondition != null" >
+        #{weathercondition,jdbcType=VARCHAR},
+      </if>
+      <if test="sickness != null" >
+        #{sickness,jdbcType=VARCHAR},
+      </if>
+      <if test="uktraviolet != null" >
+        #{uktraviolet,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.szi.springboot.entity.Weather" >
+    update weather
+    <set >
+      <if test="site != null" >
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=INTEGER},
+      </if>
+      <if test="wind != null" >
+        wind = #{wind,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="kpa != null" >
+        kpa = #{kpa,jdbcType=INTEGER},
+      </if>
+      <if test="aircondition != null" >
+        aircondition = #{aircondition,jdbcType=VARCHAR},
+      </if>
+      <if test="weathercondition != null" >
+        weathercondition = #{weathercondition,jdbcType=VARCHAR},
+      </if>
+      <if test="sickness != null" >
+        sickness = #{sickness,jdbcType=VARCHAR},
+      </if>
+      <if test="uktraviolet != null" >
+        uktraviolet = #{uktraviolet,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.szi.springboot.entity.Weather" >
+    update weather
+    set site = #{site,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=INTEGER},
+      wind = #{wind,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      kpa = #{kpa,jdbcType=INTEGER},
+      aircondition = #{aircondition,jdbcType=VARCHAR},
+      weathercondition = #{weathercondition,jdbcType=VARCHAR},
+      sickness = #{sickness,jdbcType=VARCHAR},
+      uktraviolet = #{uktraviolet,jdbcType=VARCHAR}
+    where weather_id = #{weatherId,jdbcType=INTEGER}
+  </update>
+</mapper>
